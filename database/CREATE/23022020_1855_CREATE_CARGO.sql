@@ -1,0 +1,4 @@
+CREATE TABLE Cargo (
+    id INT NOT NULL PRIMARY KEY,
+    nome VARCHAR(30)
+);

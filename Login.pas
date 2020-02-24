@@ -14,7 +14,6 @@ type
     edtSenha: TEdit;
     btnEntrar: TSpeedButton;
     procedure FormCreate(Sender: TObject);
-    procedure ValidarLogin();
     procedure btnEntrarClick(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
   private
@@ -28,24 +27,29 @@ var
 
 implementation
 
+
 {$R *.dfm}
 
-uses Principal;
-procedure TFrmLogin.ValidarLogin();
+uses Modulo, Principal;
+procedure ValidarLogin();
 begin
-  if Trim(edtUsuario.Text) = '' then
+  if Trim(FrmLogin.edtUsuario.Text) = '' then
   begin
     MessageDlg('Por favor, informe o usuário.', mtInformation, mbOKCancel, 0);
     Exit;
   end;
 
-  if Trim(edtSenha.Text) = '' then
+  if Trim(FrmLogin.edtSenha.Text) = '' then
   begin
     MessageDlg('Por favor, informe a sua senha.', mtInformation, mbOKCancel, 0);
     Exit;
+
   end;
 
-  FrmPrincipal := TFrmPrincipal.Create(self);
+  nomeUsuario := FrmLogin.edtUsuario.Text;
+
+  FrmPrincipal := TFrmPrincipal.Create(FrmLogin);
+  FrmLogin.Hide;
   FrmPrincipal.ShowModal;
 end;
 
